@@ -97,3 +97,7 @@ jobs:
           path: ${{ env.PACKAGED_OUTPUTPATH }}/*
           retention-days: 14
           compression-level: 0
+
+      - uses: geekyeggo/delete-artifact@v5
+        with:
+          name: armbian-base-image
