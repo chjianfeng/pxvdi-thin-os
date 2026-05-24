@@ -1,0 +1,53 @@
+name: Build ISO
+
+on:
+  workflow_dispatch:
+    inputs:
+      arch:
+        description: "目标架构"
+        type: choice
+        required: true
+        default: "amd64"
+        options:
+          - amd64
+          - arm64
+
+jobs:
+  build-iso:
+    runs-on: ${{ inputs.arch == 'arm64' && 'ubuntu-24.04-arm' || 'ubuntu-24.04' }}
+    timeout-minutes: 120
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Free disk space
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc \
+                      /opt/hostedtoolcache /usr/local/share/boost
+          sudo apt-get clean
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y debootstrap qemu-utils xorriso squashfs-tools \
+            dosfstools mtools gdisk e2fsprogs rsync curl git \
+            grub-efi-${{ inputs.arch == 'amd64' && 'amd64' || 'arm64' }}-bin \
+            ${{ inputs.arch == 'amd64' && 'grub-pc-bin grub-efi-ia32-bin' || '' }}
+
+      - name: Build ISO
+        run: sudo bash buildrootfs.sh rebuild
+
+      - name: Rename ISO
+        run: |
+          cd iso/isofs
+          ISO_FILE=$(ls *.iso 2>/dev/null | head -1)
+          if [[ -n "$ISO_FILE" && "$ISO_FILE" != "pxvdi-${{ inputs.arch }}.iso" ]]; then
+            mv "$ISO_FILE" "pxvdi-${{ inputs.arch }}.iso"
+          fi
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pxvdi-${{ inputs.arch }}
+          path: iso/isofs/pxvdi-${{ inputs.arch }}.iso
+          retention-days: 14
+          compression-level: 0
