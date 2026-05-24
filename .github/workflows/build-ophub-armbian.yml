@@ -39,11 +39,26 @@ jobs:
           git clone --depth=1 https://github.com/armbian/build.git armbian-build
           bash .github/scripts/prepare-userpatches.sh armbian-build
 
+      - name: Detect platform
+        id: platform
+        run: |
+          CONF=".github/scripts/model_database.conf"
+          FIRST_BOARD="${{ inputs.amlogic_soc }}"
+          FIRST_BOARD="${FIRST_BOARD%%_*}"
+          PLATFORM=$(awk -F':' -v board="$FIRST_BOARD" '$14 ~ "^"board"[[:space:]]*$" {gsub(/[[:space:]]/, "", $10); print $10; exit}' "$CONF")
+          case "$PLATFORM" in
+            rockchip)  BUILD_BOARD="rock-5b" ;;
+            allwinner) BUILD_BOARD="orangepizero3" ;;
+            *)         BUILD_BOARD="odroidn2" ;;
+          esac
+          echo "build_board=$BUILD_BOARD" >> $GITHUB_OUTPUT
+          echo "Detected platform=$PLATFORM → BUILD_BOARD=$BUILD_BOARD"
+
       - name: Build Armbian base image
         run: |
           cd armbian-build
           sudo ./compile.sh \
-            BOARD=odroidn2 \
+            BOARD=${{ steps.platform.outputs.build_board }} \
             BRANCH=current \
             RELEASE=trixie \
             BUILD_MINIMAL=yes \
