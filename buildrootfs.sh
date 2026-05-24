@@ -5,7 +5,6 @@ script_path=$(readlink -f "$0")
 DIR=$(dirname "$script_path")
 isopath=$DIR/iso/isofs
 targetdir="$DIR/iso/rootfs"
-rootdisks="/dev/nbd8"
 modules="hfs hfsplus cdrom sd_mod sr_mod loop squashfs iso9660 overlay nls_cp437 nls_iso8859-1 nls_utf8 nls_ascii vfat"
 rockchip="false"
 searchfilename=$(date +%s%N | md5sum | head -c 10)
@@ -46,39 +45,6 @@ run_in_target(){
   else
     "$@"
   fi
-}
-
-disksetup(){
-  echo "check disk"
-  test -f pxvdi.raw && rm  pxvdi.raw
-  echo "enable nbd mod"
-  modprobe nbd
-  echo "create disks"
-  dd if=/dev/zero of=pxvdi.raw bs=1G count=6
-  echo "modprobe disk"
-  qemu-nbd -c $rootdisks pxvdi.raw || echo ok
-}
-
-######################## ISO 专用：磁盘 / 引导 / 镜像 ########################
-
-diskformat(){
-	echo "create gpt"
-	sgdisk -GZ $rootdisks >/dev/null 2>&1
-	echo "create bios parttion"
-
-	sgdisk -a1 -n1:34:2047  -t1:EF02  $rootdisks >/dev/null 2>&1
-	echo "create efi parttion"
-
-	sgdisk -a1 -n2:1M:+512M -t2:EF00 $rootdisks >/dev/null 2>&1
-
-	echo "create root parttion"
-	sgdisk -a1 -n3:513M:-256M  $rootdisks >/dev/null 2>&1
-
-  mkfs.ext4 -F "$rootdisks"p3
-  mkfs.vfat --codepage=437 -F 32 "$rootdisks"p2
-
-  mount -t ext4 "$rootdisks"p3 $targetdir
-  e2label "$rootdisks"p3 pxvdirootdisk
 }
 
 
@@ -245,7 +211,6 @@ clean_chroot(){
 clean(){
   clean_chroot
   umount -l $targetdir
-  qemu-nbd -d $rootdisks
 }
 
 create_squashfs(){
