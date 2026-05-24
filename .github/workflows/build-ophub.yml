@@ -1,0 +1,83 @@
+name: ophub armbian
+
+on:
+  workflow_dispatch:
+    inputs:
+      amlogic_soc:
+        description: "ophub board 名，详见 docs/ophub-boards.md"
+        type: string
+        required: true
+        default: "s905x3"
+
+jobs:
+  build-base:
+    runs-on: ubuntu-24.04-arm
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Free disk space
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc \
+                      /opt/hostedtoolcache /usr/local/share/boost
+          sudo apt-get clean
+
+      - name: Clone Armbian & prepare
+        run: |
+          git clone --depth=1 https://github.com/armbian/build.git armbian-build
+          bash .github/scripts/prepare-userpatches.sh armbian-build
+
+      - name: Build Armbian base image
+        run: |
+          cd armbian-build
+          sudo ./compile.sh \
+            BOARD=odroidn2 \
+            BRANCH=current \
+            RELEASE=trixie \
+            BUILD_MINIMAL=yes \
+            BUILD_DESKTOP=no \
+            KERNEL_CONFIGURE=no \
+            SHARE_LOG=yes
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: armbian-base-image
+          path: armbian-build/output/images/*.img*
+
+  repackage-tvbox:
+    needs: build-base
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: armbian-base-image
+          path: ./base-image
+
+      - name: Prepare base image
+        id: prep
+        run: |
+          cd base-image
+          for f in *.xz; do [ -f "$f" ] && xz -d "$f"; done
+          for f in *.zst; do [ -f "$f" ] && zstd -d "$f"; done
+          img=$(ls *.img | head -1)
+          echo "img_path=$(pwd)/${img}" >> $GITHUB_OUTPUT
+
+      - name: Rebuild for TV Box
+        uses: ophub/amlogic-s9xxx-armbian@main
+        with:
+          build_target: armbian
+          armbian_path: ${{ steps.prep.outputs.img_path }}
+          armbian_board: ${{ inputs.amlogic_soc }}
+          armbian_kernel: 6.6.y_6.12.y
+          auto_kernel: true
+          kernel_repo: ophub/kernel
+          kernel_usage: stable
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pxvdi-tvbox-${{ inputs.amlogic_soc }}
+          path: ${{ env.PACKAGED_OUTPUTPATH }}/*
+          retention-days: 14

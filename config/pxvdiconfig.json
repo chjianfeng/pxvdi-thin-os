@@ -1,0 +1,23 @@
+{
+  "save_password": true,
+  "language": "zh-CN",
+  "footer": "",
+  "connecttype": "pxvdi",
+  "sdl_renderer": "auto",
+  "favorite_vm_id": "",
+  "server": "",
+  "logo_path": "",
+  "decode": "400",
+  "pxvdi_bitrate": "auto",
+  "favorite_vm_name": "",
+  "debug": false,
+  "sdl_decoder": "auto",
+  "autologin": true,
+  "fullscreen": true,
+  "username": "",
+  "password": "",
+  "menubar": true,
+  "freerdpversion": "3",
+  "pxvdi_external_mode": false,
+  "macmode": false
+}

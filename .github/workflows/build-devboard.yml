@@ -1,0 +1,58 @@
+name: Build DevBoard Image
+
+on:
+  workflow_dispatch:
+    inputs:
+      board:
+        description: "板子型号，见 https://www.armbian.com/download/"
+        type: string
+        required: true
+        default: "rock-5b"
+      branch:
+        description: "内核分支"
+        type: choice
+        required: true
+        default: "vendor"
+        options:
+          - vendor
+          - current
+          - edge
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04-arm
+    timeout-minutes: 120
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Free disk space
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc \
+                      /opt/hostedtoolcache /usr/local/share/boost
+          sudo apt-get clean
+
+      - name: Clone Armbian
+        run: git clone --depth=1 https://github.com/armbian/build.git armbian-build
+
+      - name: Prepare userpatches
+        run: bash .github/scripts/prepare-userpatches.sh armbian-build
+
+      - name: Build
+        run: |
+          cd armbian-build
+          sudo ./compile.sh \
+            BOARD=${{ inputs.board }} \
+            BRANCH=${{ inputs.branch }} \
+            RELEASE=trixie \
+            BUILD_MINIMAL=yes \
+            BUILD_DESKTOP=no \
+            KERNEL_CONFIGURE=no \
+            SHARE_LOG=yes
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pxvdi-${{ inputs.board }}-${{ inputs.branch }}
+          path: armbian-build/output/images/*.img*
+          retention-days: 14
+          if-no-files-found: error
