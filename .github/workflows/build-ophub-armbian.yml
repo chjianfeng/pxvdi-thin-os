@@ -7,7 +7,19 @@ on:
         description: "ophub board 名，详见 docs/ophub-boards.md"
         type: string
         required: true
-        default: "s905x3"
+        default: "s922x"
+      armbian_kernel:
+        description: "内核版本，stable=默认全部，详见 docs/ophub-boards.md"
+        type: choice
+        required: true
+        default: "stable"
+        options:
+          - stable
+          - 6.12.y
+          - 6.18.y
+          - 6.6.y
+          - 6.1.y
+          - 5.15.y
 
 jobs:
   build-base:
@@ -37,12 +49,14 @@ jobs:
             BUILD_MINIMAL=yes \
             BUILD_DESKTOP=no \
             KERNEL_CONFIGURE=no \
+            NETWORKING_STACK=network-manager \
             SHARE_LOG=yes
 
       - uses: actions/upload-artifact@v4
         with:
           name: armbian-base-image
           path: armbian-build/output/images/*.img*
+          compression-level: 0
 
   repackage-tvbox:
     needs: build-base
@@ -71,13 +85,15 @@ jobs:
           build_target: armbian
           armbian_path: ${{ steps.prep.outputs.img_path }}
           armbian_board: ${{ inputs.amlogic_soc }}
-          armbian_kernel: 6.6.y_6.12.y
+          armbian_kernel: ${{ inputs.armbian_kernel != 'stable' && inputs.armbian_kernel || '' }}
           auto_kernel: true
           kernel_repo: ophub/kernel
           kernel_usage: stable
+          armbian_size: 6000
 
       - uses: actions/upload-artifact@v4
         with:
           name: pxvdi-tvbox-${{ inputs.amlogic_soc }}
           path: ${{ env.PACKAGED_OUTPUTPATH }}/*
           retention-days: 14
+          compression-level: 0

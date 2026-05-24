@@ -2,9 +2,24 @@
 
 数据来源: [ophub/amlogic-s9xxx-armbian model_database.conf](https://github.com/ophub/amlogic-s9xxx-armbian/blob/main/build-armbian/armbian-files/common-files/etc/model_database.conf)
 
-> Board 名用于 `build-tvbox.yml` 的 `amlogic_soc` 参数，多个用 `_` 分隔。
+> Board 名用于 `build-ophub-armbian.yml` 的 `amlogic_soc` 参数，多个用 `_` 分隔。
 >
 > 还支持批量写法: `all` / `amlogic` / `rockchip` / `allwinner` / `first50` / `last50` / `range50_100`
+
+### 可用内核版本
+
+所有 board 默认使用 `stable` 标签，当前 stable 内核为：
+
+| 内核版本 | 说明 |
+|---------|------|
+| `6.12.y` | 稳定版（推荐） |
+| `6.18.y` | 最新版 |
+| `6.6.y` | LTS 长期支持 |
+| `6.1.y` | LTS 长期支持 |
+| `5.15.y` | 旧设备 |
+| `5.10.y` | 旧设备 |
+
+> 多个版本用 `_` 分隔，如 `6.6.y_6.12.y`，会为每个版本各生成一套镜像。
 
 ---
 

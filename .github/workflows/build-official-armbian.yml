@@ -1,10 +1,10 @@
-name: Build DevBoard Image
+name: official Armbian
 
 on:
   workflow_dispatch:
     inputs:
       board:
-        description: "板子型号，见 https://www.armbian.com/download/"
+        description: "board 名，详见 docs/armbian-boards.md"
         type: string
         required: true
         default: "rock-5b"
@@ -48,6 +48,7 @@ jobs:
             BUILD_MINIMAL=yes \
             BUILD_DESKTOP=no \
             KERNEL_CONFIGURE=no \
+            NETWORKING_STACK=network-manager \
             SHARE_LOG=yes
 
       - uses: actions/upload-artifact@v4
@@ -56,3 +57,4 @@ jobs:
           path: armbian-build/output/images/*.img*
           retention-days: 14
           if-no-files-found: error
+          compression-level: 0
