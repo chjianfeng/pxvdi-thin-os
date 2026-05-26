@@ -192,25 +192,22 @@ prepare_chroot(){
 
 clean_chroot(){
 	echo "clean chroot"
-	echo clean
-  umount -l $targetdir/boot/efi
-    echo "start mount proc"
-	umount -l $targetdir/proc
-  echo "mount proc"
-	umount -l $targetdir/sys
-	umount -l $targetdir/dev/pts
-	umount -l $targetdir/dev
-	umount -l $targetdir/boot/efi/
- 	umount -l $targetdir/run
-  umount -l $targetdir/tmp
-	umount -l $targetdir/mnt/run
-  umount -l /tmp/efi
+	umount -l $targetdir/boot/efi 2>/dev/null || true
+	umount -l $targetdir/proc 2>/dev/null || true
+	umount -l $targetdir/sys 2>/dev/null || true
+	umount -l $targetdir/dev/pts 2>/dev/null || true
+	umount -l $targetdir/dev 2>/dev/null || true
+	umount -l $targetdir/boot/efi/ 2>/dev/null || true
+	umount -l $targetdir/run 2>/dev/null || true
+	umount -l $targetdir/tmp 2>/dev/null || true
+	umount -l $targetdir/mnt/run 2>/dev/null || true
+	umount -l /tmp/efi 2>/dev/null || true
 }
 
 
 clean(){
   clean_chroot
-  umount -l $targetdir
+  umount -l $targetdir 2>/dev/null || true
 }
 
 create_squashfs(){
