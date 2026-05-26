@@ -24,5 +24,7 @@ cp "$REPO_ROOT/bizhi.jpg" "$OVERLAY/" 2>/dev/null || true
 cp "$REPO_ROOT/rc.xml" "$OVERLAY/" 2>/dev/null || true
 cp -r "$REPO_ROOT/config" "$OVERLAY/"
 cp -r "$REPO_ROOT/loonggpu" "$OVERLAY/" 2>/dev/null || true
+mkdir -p "$OVERLAY/.github/scripts"
+cp "$SCRIPT_DIR/armbian-mali.json" "$OVERLAY/.github/scripts/"
 
 echo "[prepare-userpatches] done → $USERPATCHES"

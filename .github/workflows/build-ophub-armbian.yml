@@ -46,13 +46,22 @@ jobs:
           FIRST_BOARD="${{ inputs.amlogic_soc }}"
           FIRST_BOARD="${FIRST_BOARD%%_*}"
           PLATFORM=$(awk -F':' -v board="$FIRST_BOARD" '$14 ~ "^"board"[[:space:]]*$" {gsub(/[[:space:]]/, "", $10); print $10; exit}' "$CONF")
+          SOC=$(awk -F':' -v board="$FIRST_BOARD" '$14 ~ "^"board"[[:space:]]*$" {gsub(/[[:space:]]/, "", $3); print $3; exit}' "$CONF")
           case "$PLATFORM" in
-            rockchip)  BUILD_BOARD="rock-5b" ;;
+            rockchip)
+              case "$SOC" in
+                rk3588|rk3588s)           BUILD_BOARD="rock-5b" ;;
+                rk3568|rk3566|rk3576)     BUILD_BOARD="rock-3a" ;;
+                rk3399)                   BUILD_BOARD="rockpi-4b" ;;
+                rk3328|rk3528|rk3318)     BUILD_BOARD="rock-2f" ;;
+                *)                        BUILD_BOARD="rock-5b" ;;
+              esac
+              ;;
             allwinner) BUILD_BOARD="orangepizero3" ;;
             *)         BUILD_BOARD="odroidn2" ;;
           esac
           echo "build_board=$BUILD_BOARD" >> $GITHUB_OUTPUT
-          echo "Detected platform=$PLATFORM → BUILD_BOARD=$BUILD_BOARD"
+          echo "Detected platform=$PLATFORM, SOC=$SOC → BUILD_BOARD=$BUILD_BOARD"
 
       - name: Build Armbian base image
         run: |

@@ -10,7 +10,7 @@ rockchip="false"
 searchfilename=$(date +%s%N | md5sum | head -c 10)
 
 # 公共包列表 — ISO 和 Armbian 模式共用，添加新包只改这里
-PXVDI_BASE_PACKAGES="udiskie chrony console-setup zstd gzip bash-completion locales \
+PXVDI_BASE_PACKAGES="jq udiskie chrony console-setup zstd gzip bash-completion locales \
   libmagic1 network-manager-gnome wpagui iw gnome-network-displays \
   xserver-xorg-input-all lightdm network-manager xfonts-intl-chinese \
   virt-viewer openbox xorg pavucontrol pulseaudio \
@@ -139,9 +139,30 @@ pxvdi_deb(){
 
   # rockchip 加速包
   if [ "$rockchip" == "true" ] || [[ "${ARMBIAN_LINUXFAMILY:-}" =~ ^(rockchip|rk35xx) ]]; then
+    # 添加 rockchip 专用源
+    echo "deb https://mirrors.lierfang.com/pxcloud/pxvdi/ $release rockchip" > $targetdir/etc/apt/sources.list.d/pxvdi-rockchip.list
+    run_in_target apt-get update || true
+
+    # 安装 Rockchip 适配的 xserver-xorg-core
+    DEBIAN_FRONTEND=noninteractive run_in_target apt-get install -y \
+        xserver-xorg-core/rockchip || true
+
     DEBIAN_FRONTEND=noninteractive run_in_target apt-get install -y \
         gstreamer1.0-rockchip1 librga2 librockchip-mpp1 librockchip-vpu0 2>/dev/null \
         || run_in_target apt-get install -y gstreamer-rockchip 2>/dev/null || true
+
+    # 根据 board 从 JSON 映射表查找对应的 Mali GPU 驱动
+    local _mali_pkg=""
+    local _mali_json="$DIR/.github/scripts/armbian-mali.json"
+    if [ -n "${BOARD:-}" ] && [ -f "$_mali_json" ]; then
+      _mali_pkg=$(jq -r --arg b "$BOARD" '.[$b] // empty' "$_mali_json")
+    fi
+    if [ -n "$_mali_pkg" ]; then
+      echo "[pxvdi] Installing Mali GPU driver: $_mali_pkg (board=$BOARD)"
+      DEBIAN_FRONTEND=noninteractive run_in_target apt-get install -y "$_mali_pkg" 2>/dev/null || true
+    else
+      echo "[pxvdi] No Mali driver mapping found for board=${BOARD:-unknown}, skipping"
+    fi
   fi
 
   run_in_target pxvdistream install || true
@@ -495,6 +516,7 @@ mode_armbian() {
     echo "==> 模式: armbian (Armbian customize-image hook)"
     targetdir=""
     ARMBIAN_LINUXFAMILY="${3:-}"
+    BOARD="${4:-}"
 
     # 确保 apt 源可用
     if [ ! -f /etc/apt/sources.list.d/debian.sources ] && \
