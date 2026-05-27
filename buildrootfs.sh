@@ -145,7 +145,7 @@ pxvdi_deb(){
 
     # 安装 Rockchip 适配的 xserver-xorg-core
     DEBIAN_FRONTEND=noninteractive run_in_target apt-get install -y \
-        xserver-xorg-core/rockchip || true
+        xserver-xorg-core || true
 
     DEBIAN_FRONTEND=noninteractive run_in_target apt-get install -y \
         gstreamer1.0-rockchip1 librga2 librockchip-mpp1 librockchip-vpu0 2>/dev/null \
