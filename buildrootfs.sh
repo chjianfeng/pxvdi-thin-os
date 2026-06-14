@@ -133,7 +133,7 @@ pxvdi_deb(){
   local _pxvdi_pkgs="pxvdi-thin-client pxvdistream freerdp3-x11 freerdp3-sdl freerdp3-wayland pxvdistreamclient pxvdi-theme"
   # ISO 模式额外需要自定义内核和安装器
   if [ "$MODE" != "armbian" ]; then
-    _pxvdi_pkgs="$_pxvdi_pkgs linux-image-6.6.151-pxvdi pxvdi-boot-initramfs-tools pxvdi-installer"
+    _pxvdi_pkgs="$_pxvdi_pkgs linux-image-6.6-pxvdi  pxvdi-boot-initramfs-tools pxvdi-installer"
   fi
   DEBIAN_FRONTEND=noninteractive run_in_target apt-get install -y $_pxvdi_pkgs || errlog "apt install pxvdi failed"
 
