@@ -1,0 +1,65 @@
+name: Update board docs
+
+on:
+  schedule:
+    # Daily at 02:00 UTC (10:00 Asia/Shanghai)
+    - cron: "0 2 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: update-board-docs
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Update data/boards.json and docs
+        run: python3 scripts/update-boards-docs.py update
+
+      - name: Verify docs match JSON
+        run: python3 scripts/update-boards-docs.py check
+
+      - name: Detect changes
+        id: changes
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            git status --short
+          else
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "No upstream changes."
+          fi
+
+      - name: Open or update pull request
+        if: steps.changes.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: docs/auto-update-boards
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git checkout -B "$BRANCH"
+          git add -A data docs
+          git commit -m "docs: 自动更新 board 列表" -m "Co-Authored-By: Claude Code <noreply@anthropic.com>"
+          git push --force origin "$BRANCH"
+
+          if gh pr view "$BRANCH" --json number >/dev/null 2>&1; then
+            echo "Updated existing PR for $BRANCH"
+            exit 0
+          fi
+
+          gh pr create \
+            --base main \
+            --head "$BRANCH" \
+            --title "docs: 自动更新 board 列表" \
+            --body '由 `.github/workflows/update-board-docs.yml` 自动生成：更新 `data/boards.json` 及由其渲染的两份 Markdown，请检查 diff 后合并。 🤖 Generated with [Claude Code](https://claude.com/claude-code)'
