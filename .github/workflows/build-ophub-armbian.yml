@@ -41,12 +41,33 @@ jobs:
 
       - name: Detect platform
         id: platform
+        env:
+          INPUT_BOARD: ${{ inputs.amlogic_soc }}
         run: |
-          CONF=".github/scripts/model_database.conf"
-          FIRST_BOARD="${{ inputs.amlogic_soc }}"
-          FIRST_BOARD="${FIRST_BOARD%%_*}"
-          PLATFORM=$(awk -F':' -v board="$FIRST_BOARD" '$14 ~ "^"board"[[:space:]]*$" {gsub(/[[:space:]]/, "", $10); print $10; exit}' "$CONF")
-          SOC=$(awk -F':' -v board="$FIRST_BOARD" '$14 ~ "^"board"[[:space:]]*$" {gsub(/[[:space:]]/, "", $3); print $3; exit}' "$CONF")
+          BOARD_JSON="data/boards.json"
+
+          # 与上游 rebuild 的 batch 语法保持一致，先处理批量写法
+          if [[ "$INPUT_BOARD" =~ ^(all|first[0-9]+|last[0-9]+|range[0-9]+_[0-9]+)$ ]]; then
+            # 批量写法覆盖多个平台，无法定位单个 board，基础镜像沿用默认的 amlogic
+            PLATFORM="amlogic"
+            SOC=""
+            echo "::notice::批量写法 ${INPUT_BOARD} 无法定位单个 board，基础镜像使用默认 amlogic/odroidn2"
+          elif [[ "$INPUT_BOARD" =~ ^(amlogic|rockchip|allwinner)([0-9]+(_[0-9]+)?)?$ ]]; then
+            # 平台名，可带范围：rockchip / amlogic50 / rockchip50_100
+            PLATFORM="${BASH_REMATCH[1]}"
+            SOC=""
+          else
+            # board 名，多个用 _ 分隔，取第一个来推断平台
+            FIRST_BOARD="${INPUT_BOARD%%_*}"
+            ENTRY=$(jq -c --arg b "$FIRST_BOARD" '.ophub.boards[] | select(.board == $b)' "$BOARD_JSON")
+            if [ -z "$ENTRY" ]; then
+              echo "::error::未知的 ophub board: $FIRST_BOARD（可用 board 名、amlogic/rockchip/allwinner 或 all/firstN/lastN/rangeN_M，完整列表见 docs/ophub-boards.md）"
+              exit 1
+            fi
+            PLATFORM=$(jq -r '.platform' <<<"$ENTRY")
+            SOC=$(jq -r '.soc' <<<"$ENTRY")
+          fi
+
           case "$PLATFORM" in
             rockchip)
               case "$SOC" in
@@ -61,7 +82,7 @@ jobs:
             *)         BUILD_BOARD="odroidn2" ;;
           esac
           echo "build_board=$BUILD_BOARD" >> $GITHUB_OUTPUT
-          echo "Detected platform=$PLATFORM, SOC=$SOC → BUILD_BOARD=$BUILD_BOARD"
+          echo "Detected platform=$PLATFORM, SOC=${SOC:--} → BUILD_BOARD=$BUILD_BOARD"
 
       - name: Build Armbian base image
         run: |
