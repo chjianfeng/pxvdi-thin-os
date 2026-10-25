@@ -106,7 +106,7 @@ jobs:
   repackage-tvbox:
     needs: build-base
     runs-on: ubuntu-24.04
-    timeout-minutes: 60
+    timeout-minutes: 120
     steps:
       - uses: actions/checkout@v4
 
@@ -136,10 +136,19 @@ jobs:
           kernel_usage: stable
           armbian_size: 6000
 
+      - name: Package as tar.xz
+        run: |
+          cd "${{ env.PACKAGED_OUTPUTPATH }}"
+          rm -f *.sha
+          for f in *.gz; do [ -f "$f" ] && gzip -d "$f"; done
+          for f in *.xz; do [ -f "$f" ] && xz -d -T0 "$f"; done
+          for f in *.zst; do [ -f "$f" ] && zstd -d --rm "$f"; done
+          tar -I 'xz -9e -T0' -cf "$GITHUB_WORKSPACE/pxvdi-tvbox-${{ inputs.amlogic_soc }}.tar.xz" .
+
       - uses: actions/upload-artifact@v4
         with:
           name: pxvdi-tvbox-${{ inputs.amlogic_soc }}
-          path: ${{ env.PACKAGED_OUTPUTPATH }}/*
+          path: pxvdi-tvbox-${{ inputs.amlogic_soc }}.tar.xz
           retention-days: 14
           compression-level: 0
 

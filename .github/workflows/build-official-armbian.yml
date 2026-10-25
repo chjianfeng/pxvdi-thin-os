@@ -21,7 +21,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-24.04-arm
-    timeout-minutes: 120
+    timeout-minutes: 180
 
     steps:
       - uses: actions/checkout@v4
@@ -51,10 +51,18 @@ jobs:
             NETWORKING_STACK=network-manager \
             SHARE_LOG=yes
 
+      - name: Package as tar.xz
+        run: |
+          cd armbian-build/output/images
+          rm -f *.sha
+          for f in *.xz; do [ -f "$f" ] && xz -d -T0 "$f"; done
+          for f in *.zst; do [ -f "$f" ] && zstd -d --rm "$f"; done
+          tar -I 'xz -9e -T0' -cf "$GITHUB_WORKSPACE/pxvdi-${{ inputs.board }}-${{ inputs.branch }}.tar.xz" .
+
       - uses: actions/upload-artifact@v4
         with:
           name: pxvdi-${{ inputs.board }}-${{ inputs.branch }}
-          path: armbian-build/output/images/*.img*
+          path: pxvdi-${{ inputs.board }}-${{ inputs.branch }}.tar.xz
           retention-days: 14
           if-no-files-found: error
           compression-level: 0
