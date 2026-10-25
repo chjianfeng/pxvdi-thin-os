@@ -132,6 +132,9 @@ pxvdi_deb(){
   # ISO 模式额外需要自定义内核和安装器
   if [ "$MODE" != "armbian" ]; then
     _pxvdi_pkgs="$_pxvdi_pkgs linux-image-6.6-pxvdi  pxvdi-boot-initramfs-tools pxvdi-installer"
+  else
+    # Armbian ARM 版本统一安装 v4l2 stateless 硬解 VAAPI 驱动
+    _pxvdi_pkgs="$_pxvdi_pkgs v4l2-request-vaapi-driver"
   fi
 
   # 硬解加速包：按 SoC 家族选择（ISO 模式 ARMBIAN_LINUXFAMILY 为空，保持通用包）
