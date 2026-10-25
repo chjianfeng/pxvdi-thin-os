@@ -6,7 +6,6 @@ DIR=$(dirname "$script_path")
 isopath=$DIR/iso/isofs
 targetdir="$DIR/iso/rootfs"
 modules="hfs hfsplus cdrom sd_mod sr_mod loop squashfs iso9660 overlay nls_cp437 nls_iso8859-1 nls_utf8 nls_ascii vfat"
-rockchip="false"
 searchfilename=$(date +%s%N | md5sum | head -c 10)
 
 # 公共包列表 — ISO 和 Armbian 模式共用，添加新包只改这里
@@ -15,8 +14,7 @@ PXVDI_BASE_PACKAGES="jq udiskie chrony console-setup zstd gzip bash-completion l
   xserver-xorg-input-all lightdm network-manager xfonts-intl-chinese \
   virt-viewer openbox xorg pavucontrol pulseaudio \
   feh xfonts-wqy plymouth-themes plymouth-x11 \
-  fonts-noto-cjk gstreamer1.0-plugins-base-apps gstreamer1.0-plugins-ugly \
-  gstreamer1.0-plugins-rtp gstreamer1.0-plugins-bad gstreamer1.0-nice initramfs-tools \
+  fonts-noto-cjk initramfs-tools \
   system-config-printer printer-driver-all cups rsync pciutils \
   fcitx5 fcitx5-chinese-addons fcitx5-frontend-all fcitx5-config-qt \
   fcitx5-mozc fcitx5-anthy im-config"
@@ -136,26 +134,17 @@ pxvdi_deb(){
     _pxvdi_pkgs="$_pxvdi_pkgs linux-image-6.6-pxvdi  pxvdi-boot-initramfs-tools pxvdi-installer"
   fi
 
-  # rockchip 加速包
-  if [ "$rockchip" == "true" ] || [[ "${ARMBIAN_LINUXFAMILY:-}" =~ ^(rockchip|rk35xx) ]]; then
-    # 添加 rockchip 专用源
-    echo "deb https://mirrors.lierfang.com/pxcloud/pxvdi/ $release rockchip" > $targetdir/etc/apt/sources.list.d/pxvdi-rockchip.list
-
-    # 根据 board 从 JSON 映射表查找对应的 Mali GPU 驱动
-    local _mali_pkg=""
-    local _mali_json="$DIR/.github/scripts/armbian-mali.json"
-    if [ -n "${BOARD:-}" ] && [ -f "$_mali_json" ]; then
-      _mali_pkg=$(jq -r --arg b "$BOARD" '.[$b] // empty' "$_mali_json")
-    fi
-    if [ -n "$_mali_pkg" ]; then
-      echo "[pxvdi] Installing Mali GPU driver: $_mali_pkg (board=$BOARD)"
-        _ pxvdi_pkgs="$_pxvdi_pkgs   $_mali_pkg pxvdistreamclient-rockchip librga2 librockchip-mpp1 librockchip-vpu0 "
-    else
-      echo "[pxvdi] No Mali driver mapping found for board=${BOARD:-unknown}, skipping"
-    fi
-  else 
-    _pxvdi_pkgs="$_pxvdi_pkgs pxvdistreamclient"
-  fi
+  # 硬解加速包：按 SoC 家族选择（ISO 模式 ARMBIAN_LINUXFAMILY 为空，保持通用包）
+  case "${ARMBIAN_LINUXFAMILY:-}" in
+    rockchip*|rk35xx*)
+      _pxvdi_pkgs="$_pxvdi_pkgs pxvdistreamclient-rockchip" ;;
+    sunxi*)
+      _pxvdi_pkgs="$_pxvdi_pkgs pxvdistreamclient-cedarc" ;;
+    "")
+      _pxvdi_pkgs="$_pxvdi_pkgs pxvdistreamclient" ;;
+    *)
+      _pxvdi_pkgs="$_pxvdi_pkgs pxvdistreamclient-v4l2" ;;
+  esac
 
   run_in_target apt-get update || true
   DEBIAN_FRONTEND=noninteractive run_in_target apt-get install -y $_pxvdi_pkgs || errlog "apt install pxvdi failed"
