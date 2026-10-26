@@ -53,6 +53,8 @@ jobs:
 
       - name: Package as tar.xz
         run: |
+          # compile.sh 用 sudo 运行，产物属于 root，先交还给 runner 用户
+          sudo chown -R "$(id -u):$(id -g)" armbian-build/output
           cd armbian-build/output/images
           rm -f *.sha
           for f in *.xz; do [ -f "$f" ] && xz -d -T0 "$f"; done

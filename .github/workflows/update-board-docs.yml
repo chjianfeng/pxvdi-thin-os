@@ -21,6 +21,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          # 仓库设置允许时用 GITHUB_TOKEN；被组织策略限制时加 GH_PAT secret 即可接管
+          token: ${{ secrets.GH_PAT || secrets.GITHUB_TOKEN }}
 
       - name: Update data/boards.json and docs
         run: python3 scripts/update-boards-docs.py update
@@ -42,7 +45,7 @@ jobs:
       - name: Open or update pull request
         if: steps.changes.outputs.changed == 'true'
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_PAT || secrets.GITHUB_TOKEN }}
           BRANCH: docs/auto-update-boards
         run: |
           git config user.name "github-actions[bot]"
