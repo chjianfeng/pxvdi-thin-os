@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-23T03:08:13Z",
+  "generated_at": "2026-11-07T08:11:57Z",
   "sources": {
     "ophub": {
       "repo": "ophub/amlogic-s9xxx-armbian",
@@ -11,7 +11,7 @@
     "armbian": {
       "repo": "armbian/build",
       "ref": "main",
-      "commit": "57cb150356a106bee66bdf572368eab39cd4d7fe"
+      "commit": "c95374efd50807424c906e885d3b2c0452c27ba4"
     }
   },
   "ophub": {
@@ -34,6 +34,16 @@
         "platform": "amlogic",
         "family": "meson-g12b",
         "kernel_tags": "stable/all",
+        "build": true
+      },
+      {
+        "id": "r441",
+        "board": "ai3399-c",
+        "model": "AI3399-C",
+        "soc": "rk3399",
+        "platform": "rockchip",
+        "family": "rk3399",
+        "kernel_tags": "stable/6.18.y",
         "build": true
       },
       {
@@ -1037,6 +1047,16 @@
         "build": true
       },
       {
+        "id": "r235",
+        "board": "rock-3a",
+        "model": "Rock-3A",
+        "soc": "rk3568",
+        "platform": "rockchip",
+        "family": "rk3568",
+        "kernel_tags": "stable/6.18.y",
+        "build": true
+      },
+      {
         "id": "r228",
         "board": "rock-3b",
         "model": "Rock-3B",
@@ -1317,16 +1337,6 @@
         "build": true
       },
       {
-        "id": "307",
-        "board": "s905l3a-w103d",
-        "model": "ZTE-W103D",
-        "soc": "s905l3a",
-        "platform": "amlogic",
-        "family": "meson-g12a",
-        "kernel_tags": "stable/6.18.y",
-        "build": true
-      },
-      {
         "id": "127",
         "board": "s905l3b",
         "model": "M302A,M304A,CM201-1,CM211-1,CM311-1",
@@ -1585,6 +1595,16 @@
         "family": "meson-g12a",
         "kernel_tags": "stable/all",
         "build": false
+      },
+      {
+        "id": "307",
+        "board": "s905x2-w103d",
+        "model": "ZTE-W103D",
+        "soc": "s905x2",
+        "platform": "amlogic",
+        "family": "meson-g12a",
+        "kernel_tags": "stable/6.18.y",
+        "build": true
       },
       {
         "id": "302",
@@ -1855,6 +1875,16 @@
         "family": "meson-sm1",
         "kernel_tags": "stable/all",
         "build": false
+      },
+      {
+        "id": "528",
+        "board": "s905x3-yzd-s18",
+        "model": "YZD-S18",
+        "soc": "s905x3",
+        "platform": "amlogic",
+        "family": "meson-sm1",
+        "kernel_tags": "stable/6.18.y",
+        "build": true
       },
       {
         "id": "201",
@@ -2237,9 +2267,29 @@
         "build": true
       },
       {
+        "id": "r313",
+        "board": "torder-r10d",
+        "model": "Torder-R10D",
+        "soc": "rk3566",
+        "platform": "rockchip",
+        "family": "rk3566",
+        "kernel_tags": "rk35xx/6.1.y",
+        "build": true
+      },
+      {
         "id": "r422",
         "board": "tpm312",
         "model": "Tpm312",
+        "soc": "rk3399",
+        "platform": "rockchip",
+        "family": "rk3399",
+        "kernel_tags": "stable/6.18.y",
+        "build": true
+      },
+      {
+        "id": "r440",
+        "board": "tps781",
+        "model": "TPS781",
         "soc": "rk3399",
         "platform": "rockchip",
         "family": "rk3399",
@@ -2417,6 +2467,16 @@
         "build": true
       },
       {
+        "id": "r236",
+        "board": "z93a",
+        "model": "Z93A",
+        "soc": "rk3568",
+        "platform": "rockchip",
+        "family": "rk3568",
+        "kernel_tags": "stable/6.18.y",
+        "build": true
+      },
+      {
         "id": "r405",
         "board": "zcube1-max",
         "model": "ZCube1-Max",
@@ -2459,12 +2519,12 @@
     ],
     "kernels": {
       "stable": {
-        "5.10.y": "5.10.272",
-        "5.15.y": "5.15.223",
-        "6.1.y": "6.1.190",
-        "6.6.y": "6.6.160",
-        "6.12.y": "6.12.114",
-        "6.18.y": "6.18.58"
+        "5.10.y": "5.10.273",
+        "5.15.y": "5.15.224",
+        "6.1.y": "6.1.191",
+        "6.6.y": "6.6.161",
+        "6.12.y": "6.12.115",
+        "6.18.y": "6.18.60"
       },
       "rk3588": {
         "5.10.y": "5.10.160",
@@ -2508,7 +2568,7 @@
       },
       {
         "board": "aml-c400-plus",
-        "name": "Magicsee C400 Plus",
+        "name": "Magicsee C400+",
         "category": "conf",
         "kernel_target": [
           "current",
@@ -2525,7 +2585,7 @@
       },
       {
         "board": "aml-s905d3-cc",
-        "name": "Libre Computer Solitude",
+        "name": "Solitude",
         "category": "csc",
         "kernel_target": [
           "current",
@@ -2543,7 +2603,7 @@
       },
       {
         "board": "aml-t95z-plus",
-        "name": "T95Z Plus",
+        "name": "T95Z+",
         "category": "tvb",
         "kernel_target": [
           "edge"
@@ -2551,7 +2611,7 @@
       },
       {
         "board": "anbernic-rg-ds",
-        "name": "Anbernic RG DS",
+        "name": "RG DS",
         "category": "conf",
         "kernel_target": [
           "edge"
@@ -2575,7 +2635,7 @@
       },
       {
         "board": "arduino-uno-q",
-        "name": "Arduino UNO Q",
+        "name": "UNO Q",
         "category": "conf",
         "kernel_target": [
           "edge"
@@ -2583,7 +2643,7 @@
       },
       {
         "board": "armsom-aim7-io",
-        "name": "ArmSoM AIM7 IO",
+        "name": "AIM7 IO",
         "category": "csc",
         "kernel_target": [
           "vendor"
@@ -2591,15 +2651,16 @@
       },
       {
         "board": "armsom-cm5-io",
-        "name": "ArmSoM CM5 IO",
+        "name": "CM5 IO (RK3576)",
         "category": "csc",
         "kernel_target": [
-          "vendor"
+          "vendor",
+          "edge"
         ]
       },
       {
         "board": "armsom-cm5-rpi-cm4-io",
-        "name": "ArmSoM CM5 CM4 IO",
+        "name": "CM5 CM4 IO",
         "category": "csc",
         "kernel_target": [
           "vendor"
@@ -2615,7 +2676,7 @@
       },
       {
         "board": "armsom-forge1",
-        "name": "ArmSoM Forge1",
+        "name": "Forge1",
         "category": "csc",
         "kernel_target": [
           "vendor"
@@ -2623,7 +2684,7 @@
       },
       {
         "board": "armsom-sige1",
-        "name": "ArmSoM Sige1",
+        "name": "Sige1",
         "category": "csc",
         "kernel_target": [
           "vendor"
@@ -2631,7 +2692,7 @@
       },
       {
         "board": "armsom-sige3",
-        "name": "ArmSom Sige3",
+        "name": "Sige3",
         "category": "csc",
         "kernel_target": [
           "vendor"
@@ -2639,7 +2700,7 @@
       },
       {
         "board": "armsom-sige5",
-        "name": "ArmSoM Sige5",
+        "name": "Sige5",
         "category": "csc",
         "kernel_target": [
           "vendor",
@@ -2648,7 +2709,7 @@
       },
       {
         "board": "armsom-sige7",
-        "name": "ArmSoM Sige7",
+        "name": "Sige7",
         "category": "csc",
         "kernel_target": [
           "current",
@@ -2658,7 +2719,7 @@
       },
       {
         "board": "armsom-w3",
-        "name": "ArmSoM W3",
+        "name": "W3",
         "category": "csc",
         "kernel_target": [
           "vendor"
@@ -2822,6 +2883,15 @@
         ]
       },
       {
+        "board": "bananapim4",
+        "name": "BananaPi M4",
+        "category": "csc",
+        "kernel_target": [
+          "current",
+          "edge"
+        ]
+      },
+      {
         "board": "bananapim4berry",
         "name": "BananaPi M4 Berry",
         "category": "conf",
@@ -2918,7 +2988,8 @@
         "name": "Banana Pi R4",
         "category": "csc",
         "kernel_target": [
-          "current"
+          "current",
+          "edge"
         ]
       },
       {
@@ -2979,7 +3050,7 @@
       },
       {
         "board": "beelinkx2",
-        "name": "Beelink X2",
+        "name": "X2 TV Box",
         "category": "tvb",
         "kernel_target": [
           "current",
@@ -2989,7 +3060,7 @@
       },
       {
         "board": "bestv-r3300-l",
-        "name": "BesTV R3300-L",
+        "name": "R3300-L",
         "category": "csc",
         "kernel_target": [
           "current",
@@ -2998,7 +3069,7 @@
       },
       {
         "board": "bigtreetech-cb1",
-        "name": "BigTreeTech CB1",
+        "name": "CB1",
         "category": "conf",
         "kernel_target": [
           "current",
@@ -3007,11 +3078,19 @@
       },
       {
         "board": "bigtreetech-cb2",
-        "name": "BigTreeTech CB2",
+        "name": "CB2",
         "category": "conf",
         "kernel_target": [
           "current",
           "edge"
+        ]
+      },
+      {
+        "board": "boardcon-em3588",
+        "name": "EM3588",
+        "category": "conf",
+        "kernel_target": [
+          "vendor"
         ]
       },
       {
@@ -3024,7 +3103,7 @@
       },
       {
         "board": "cainiao-cniot-core",
-        "name": "CAINIAO CNIoT-CORE",
+        "name": "CNIoT-CORE",
         "category": "csc",
         "kernel_target": [
           "current",
@@ -3069,7 +3148,7 @@
       },
       {
         "board": "clockworkpi-a06",
-        "name": "Clockworkpi A06",
+        "name": "DevTerm A06",
         "category": "csc",
         "kernel_target": [
           "current",
@@ -3078,7 +3157,7 @@
       },
       {
         "board": "cm3588-nas",
-        "name": "FriendlyElec CM3588 NAS",
+        "name": "CM3588 NAS",
         "category": "csc",
         "kernel_target": [
           "current",
@@ -3088,7 +3167,7 @@
       },
       {
         "board": "coolpi-cm5",
-        "name": "CoolPi CM5",
+        "name": "CM5 EVB",
         "category": "csc",
         "kernel_target": [
           "edge"
@@ -3096,7 +3175,7 @@
       },
       {
         "board": "coolpi-genbook",
-        "name": "CoolPi GenBook",
+        "name": "GenBook",
         "category": "csc",
         "kernel_target": [
           "edge",
@@ -3105,7 +3184,7 @@
       },
       {
         "board": "cubie-a7z",
-        "name": "Radxa Cubie A7Z",
+        "name": "Cubie A7Z",
         "category": "csc",
         "kernel_target": [
           "vendor"
@@ -3179,6 +3258,15 @@
         ]
       },
       {
+        "board": "debix-model-a",
+        "name": "DEBIX Model A",
+        "category": "csc",
+        "kernel_target": [
+          "current",
+          "edge"
+        ]
+      },
+      {
         "board": "dg-svr-865-tiny",
         "name": "DG SVR 865 Tiny",
         "category": "conf",
@@ -3196,10 +3284,21 @@
         ]
       },
       {
-        "board": "dshanpi-r1",
-        "name": "100ASK DShanPI R1",
+        "board": "dshanpi-a1-cm5-waveshare-cm5-to-pi5-adapter",
+        "name": "100ASK DshanPi A1 CM5 on Waveshare CM5-to-Pi5-Adapter",
         "category": "csc",
         "kernel_target": [
+          "current",
+          "edge"
+        ]
+      },
+      {
+        "board": "dshanpi-r1",
+        "name": "100ASK DshanPi R1 / R1+",
+        "category": "csc",
+        "kernel_target": [
+          "current",
+          "edge",
           "vendor"
         ]
       },
@@ -3223,6 +3322,15 @@
         ]
       },
       {
+        "board": "easepi-r1",
+        "name": "EasePi-R1",
+        "category": "csc",
+        "kernel_target": [
+          "current",
+          "edge"
+        ]
+      },
+      {
         "board": "easepi-r2",
         "name": "EasePi-R2",
         "category": "conf",
@@ -3234,7 +3342,7 @@
       },
       {
         "board": "easy-eai-nano",
-        "name": "EASY-EAI Nano",
+        "name": "Nano",
         "category": "csc",
         "kernel_target": [
           "vendor"
@@ -3242,7 +3350,7 @@
       },
       {
         "board": "ebyte-ecb41-pge",
-        "name": "EByte ECB41-PGE",
+        "name": "ECB41-PGE",
         "category": "csc",
         "kernel_target": [
           "vendor"
@@ -3288,14 +3396,14 @@
       {
         "board": "firefly-aibox-k3",
         "name": "AIBOX-K3",
-        "category": "wip",
+        "category": "csc",
         "kernel_target": [
           "legacy"
         ]
       },
       {
         "board": "firefly-itx-3588j",
-        "name": "Firefly ITX-3588J",
+        "name": "ITX-3588J",
         "category": "csc",
         "kernel_target": [
           "vendor"
@@ -3303,7 +3411,7 @@
       },
       {
         "board": "firefly-rk3399",
-        "name": "Firefly RK3399",
+        "name": "RK3399",
         "category": "csc",
         "kernel_target": [
           "current",
@@ -3312,7 +3420,7 @@
       },
       {
         "board": "forlinx-ok3506-s12",
-        "name": "ForLinx OK3506-S12",
+        "name": "OK3506-S12",
         "category": "csc",
         "kernel_target": [
           "vendor"
@@ -3320,7 +3428,7 @@
       },
       {
         "board": "friendlyelec-rk3588",
-        "name": "FriendlyElec RK3588",
+        "name": "NanoPi R6/M6, NanoPC T6",
         "category": "conf",
         "kernel_target": [
           "current",
@@ -3338,7 +3446,7 @@
       },
       {
         "board": "gateway-dk",
-        "name": "Mono Gateway Development Kit",
+        "name": "Gateway Development Kit",
         "category": "conf",
         "kernel_target": [
           "current"
@@ -3417,7 +3525,7 @@
       },
       {
         "board": "hinlink-h28k",
-        "name": "HinLink H28k",
+        "name": "H28k",
         "category": "csc",
         "kernel_target": [
           "vendor"
@@ -3425,7 +3533,7 @@
       },
       {
         "board": "hinlink-h66k",
-        "name": "Hinlink H66K",
+        "name": "H66K",
         "category": "csc",
         "kernel_target": [
           "current",
@@ -3434,7 +3542,7 @@
       },
       {
         "board": "hinlink-h68k",
-        "name": "Hinlink H68K",
+        "name": "H68K",
         "category": "csc",
         "kernel_target": [
           "current",
@@ -3443,7 +3551,7 @@
       },
       {
         "board": "hinlink-h88k",
-        "name": "Hinlink H88K",
+        "name": "H88K",
         "category": "csc",
         "kernel_target": [
           "vendor",
@@ -3452,7 +3560,7 @@
       },
       {
         "board": "hinlink-hnas",
-        "name": "Hinlink HNAS",
+        "name": "HNAS",
         "category": "csc",
         "kernel_target": [
           "current",
@@ -3461,7 +3569,7 @@
       },
       {
         "board": "hinlink-ht2",
-        "name": "HinLink HT2",
+        "name": "HT2",
         "category": "csc",
         "kernel_target": [
           "vendor"
@@ -3496,7 +3604,7 @@
       },
       {
         "board": "inovato-quadra",
-        "name": "Inovato Quadra",
+        "name": "Quadra",
         "category": "conf",
         "kernel_target": [
           "current",
@@ -3541,7 +3649,7 @@
       },
       {
         "board": "k3picoitx",
-        "name": "SpacemiT K3 Pico-ITX",
+        "name": "K3 Pico-ITX",
         "category": "conf",
         "kernel_target": [
           "legacy",
@@ -3550,7 +3658,7 @@
       },
       {
         "board": "khadas-edge",
-        "name": "Khadas Edge",
+        "name": "Edge",
         "category": "csc",
         "kernel_target": [
           "current",
@@ -3559,7 +3667,7 @@
       },
       {
         "board": "khadas-edge2",
-        "name": "Khadas Edge2",
+        "name": "Edge2",
         "category": "conf",
         "kernel_target": [
           "current",
@@ -3569,7 +3677,7 @@
       },
       {
         "board": "khadas-vim1",
-        "name": "Khadas VIM1",
+        "name": "VIM1",
         "category": "conf",
         "kernel_target": [
           "current",
@@ -3578,7 +3686,7 @@
       },
       {
         "board": "khadas-vim1s",
-        "name": "Khadas VIM1S",
+        "name": "VIM1S",
         "category": "conf",
         "kernel_target": [
           "legacy",
@@ -3587,7 +3695,7 @@
       },
       {
         "board": "khadas-vim2",
-        "name": "Khadas VIM2",
+        "name": "VIM2",
         "category": "conf",
         "kernel_target": [
           "current",
@@ -3596,7 +3704,7 @@
       },
       {
         "board": "khadas-vim3",
-        "name": "Khadas VIM3",
+        "name": "VIM3",
         "category": "conf",
         "kernel_target": [
           "current",
@@ -3605,7 +3713,7 @@
       },
       {
         "board": "khadas-vim3l",
-        "name": "Khadas VIM3L",
+        "name": "VIM3L",
         "category": "conf",
         "kernel_target": [
           "current",
@@ -3614,7 +3722,7 @@
       },
       {
         "board": "khadas-vim4",
-        "name": "Khadas VIM4",
+        "name": "VIM4",
         "category": "conf",
         "kernel_target": [
           "legacy",
@@ -3632,7 +3740,7 @@
       },
       {
         "board": "kickpi-k3b",
-        "name": "KICKPI K3B",
+        "name": "K3B",
         "category": "conf",
         "kernel_target": [
           "edge"
@@ -3640,7 +3748,7 @@
       },
       {
         "board": "kickpik2b",
-        "name": "KickPi K2B",
+        "name": "K2B",
         "category": "csc",
         "kernel_target": [
           "current",
@@ -3815,7 +3923,7 @@
       },
       {
         "board": "luckfox-core3566",
-        "name": "Luckfox Core3566",
+        "name": "Core3566",
         "category": "csc",
         "kernel_target": [
           "vendor"
@@ -3823,7 +3931,7 @@
       },
       {
         "board": "luckfox-lyra-plus",
-        "name": "Luckfox Lyra Plus",
+        "name": "Lyra+",
         "category": "csc",
         "kernel_target": [
           "vendor"
@@ -3839,7 +3947,7 @@
       },
       {
         "board": "luckfox-lyra-zero-w",
-        "name": "Luckfox Lyra Zero W",
+        "name": "Lyra Zero W",
         "category": "csc",
         "kernel_target": [
           "vendor"
@@ -3847,7 +3955,7 @@
       },
       {
         "board": "luckfox-pico-max",
-        "name": "Luckfox Pico Pro / Pico Max",
+        "name": "Pico Pro / Pico Max",
         "category": "csc",
         "kernel_target": [
           "vendor"
@@ -3855,7 +3963,7 @@
       },
       {
         "board": "luckfox-pico-mini",
-        "name": "Luckfox Pico Mini",
+        "name": "Pico Mini",
         "category": "csc",
         "kernel_target": [
           "vendor"
@@ -3863,7 +3971,7 @@
       },
       {
         "board": "luckfox-rk3308b-nova",
-        "name": "Luckfox Nova",
+        "name": "Nova",
         "category": "conf",
         "kernel_target": [
           "current",
@@ -3872,7 +3980,7 @@
       },
       {
         "board": "maaxboard-8ulp",
-        "name": "Avnet MaaXBoard 8ULP",
+        "name": "MaaXBoard 8ULP",
         "category": "csc",
         "kernel_target": [
           "vendor"
@@ -3889,7 +3997,7 @@
       },
       {
         "board": "mangopi-m28k",
-        "name": "Mangopi M28K",
+        "name": "M28K",
         "category": "csc",
         "kernel_target": [
           "vendor"
@@ -3959,7 +4067,7 @@
       },
       {
         "board": "mekotronics-r58-4x4",
-        "name": "Mekotronics R58-4X4",
+        "name": "R58-4X4",
         "category": "conf",
         "kernel_target": [
           "edge",
@@ -3968,7 +4076,7 @@
       },
       {
         "board": "mekotronics-r58-minipc",
-        "name": "Mekotronics R58 MiniPC",
+        "name": "R58 MiniPC",
         "category": "csc",
         "kernel_target": [
           "vendor"
@@ -3976,7 +4084,7 @@
       },
       {
         "board": "mekotronics-r58hd",
-        "name": "Mekotronics R58HD",
+        "name": "R58HD",
         "category": "conf",
         "kernel_target": [
           "vendor"
@@ -3984,7 +4092,7 @@
       },
       {
         "board": "mekotronics-r58s2",
-        "name": "Mekotronics R58S2",
+        "name": "R58S2",
         "category": "conf",
         "kernel_target": [
           "vendor"
@@ -3992,7 +4100,7 @@
       },
       {
         "board": "mekotronics-r58x",
-        "name": "Mekotronics R58X",
+        "name": "R58X",
         "category": "csc",
         "kernel_target": [
           "vendor"
@@ -4000,7 +4108,7 @@
       },
       {
         "board": "mekotronics-r58x-4g",
-        "name": "Mekotronics R58X-4G",
+        "name": "R58X-4G",
         "category": "csc",
         "kernel_target": [
           "edge",
@@ -4009,7 +4117,7 @@
       },
       {
         "board": "mekotronics-r58x-pro",
-        "name": "Mekotronics R58X-Pro",
+        "name": "R58X-Pro",
         "category": "csc",
         "kernel_target": [
           "edge",
@@ -4028,7 +4136,7 @@
       },
       {
         "board": "mellowflyc5",
-        "name": "Mellow Fly-C5",
+        "name": "Fly-C5",
         "category": "csc",
         "kernel_target": [
           "current",
@@ -4045,7 +4153,7 @@
       },
       {
         "board": "milkv-duos-arm",
-        "name": "Milk-V Duo S (ARM)",
+        "name": "Duo S (ARM)",
         "category": "csc",
         "kernel_target": [
           "edge"
@@ -4053,7 +4161,7 @@
       },
       {
         "board": "milkv-duos-riscv",
-        "name": "Milk-V Duo S (RISC-V)",
+        "name": "Duo S (RISC-V)",
         "category": "csc",
         "kernel_target": [
           "edge"
@@ -4070,7 +4178,7 @@
       },
       {
         "board": "mixtile-blade3",
-        "name": "Mixtile Blade 3",
+        "name": "Blade 3",
         "category": "csc",
         "kernel_target": [
           "vendor",
@@ -4079,7 +4187,7 @@
       },
       {
         "board": "mixtile-core3588e",
-        "name": "Mixtile Core3588E",
+        "name": "Core3588E",
         "category": "csc",
         "kernel_target": [
           "edge",
@@ -4088,7 +4196,7 @@
       },
       {
         "board": "mixtile-edge2",
-        "name": "Mixtile Edge 2",
+        "name": "Edge 2",
         "category": "csc",
         "kernel_target": [
           "current",
@@ -4126,7 +4234,7 @@
       },
       {
         "board": "musebook",
-        "name": "SpacemiT MUSE Book",
+        "name": "MUSE Book",
         "category": "conf",
         "kernel_target": [
           "legacy",
@@ -4135,7 +4243,7 @@
       },
       {
         "board": "musepipro",
-        "name": "SpacemiT MusePi Pro",
+        "name": "MusePi Pro",
         "category": "conf",
         "kernel_target": [
           "legacy",
@@ -4202,7 +4310,7 @@
       },
       {
         "board": "nanopi-neo3-plus",
-        "name": "NanoPi NEO3 Plus",
+        "name": "NanoPi NEO3+",
         "category": "csc",
         "kernel_target": [
           "current",
@@ -4239,7 +4347,7 @@
       },
       {
         "board": "nanopi-r2c",
-        "name": "Nanopi R2C",
+        "name": "NanoPi R2C",
         "category": "csc",
         "kernel_target": [
           "current",
@@ -4248,7 +4356,7 @@
       },
       {
         "board": "nanopi-r2s",
-        "name": "Nanopi R2S",
+        "name": "NanoPi R2S",
         "category": "csc",
         "kernel_target": [
           "current",
@@ -4257,7 +4365,7 @@
       },
       {
         "board": "nanopi-r2s-plus",
-        "name": "Nanopi R2S Plus",
+        "name": "NanoPi R2S+",
         "category": "csc",
         "kernel_target": [
           "current",
@@ -4407,7 +4515,7 @@
       },
       {
         "board": "nanopik1plus",
-        "name": "NanoPi K1 Plus",
+        "name": "NanoPi K1+",
         "category": "conf",
         "kernel_target": [
           "current",
@@ -4436,7 +4544,7 @@
       },
       {
         "board": "nanopim1plus",
-        "name": "NanoPi M1 Plus",
+        "name": "NanoPi M1+",
         "category": "eos",
         "kernel_target": [
           "current",
@@ -4446,7 +4554,7 @@
       },
       {
         "board": "nanopim1plus2",
-        "name": "Nanopi M1 Plus 2",
+        "name": "NanoPi M1+ 2",
         "category": "eos",
         "kernel_target": [
           "current",
@@ -4540,7 +4648,7 @@
       },
       {
         "board": "nanopineoplus2",
-        "name": "NanoPi Neo Plus 2",
+        "name": "NanoPi Neo+ 2",
         "category": "csc",
         "kernel_target": [
           "current",
@@ -4558,7 +4666,7 @@
       },
       {
         "board": "norco-emb-3531",
-        "name": "NORCO EMB-3531",
+        "name": "EMB-3531",
         "category": "csc",
         "kernel_target": [
           "current",
@@ -4654,6 +4762,33 @@
         ]
       },
       {
+        "board": "odroidu2",
+        "name": "Odroid U2",
+        "category": "conf",
+        "kernel_target": [
+          "current",
+          "edge"
+        ]
+      },
+      {
+        "board": "odroidu3",
+        "name": "Odroid U3",
+        "category": "csc",
+        "kernel_target": [
+          "current",
+          "edge"
+        ]
+      },
+      {
+        "board": "odroidx2",
+        "name": "Odroid X2",
+        "category": "csc",
+        "kernel_target": [
+          "current",
+          "edge"
+        ]
+      },
+      {
         "board": "odroidxu4",
         "name": "Odroid XU4",
         "category": "conf",
@@ -4692,7 +4827,7 @@
       },
       {
         "board": "olimex-teres-a64",
-        "name": "OLIMEX Teres A64",
+        "name": "Teres A64",
         "category": "csc",
         "kernel_target": [
           "current",
@@ -4702,11 +4837,12 @@
       },
       {
         "board": "olinux-som-a13",
-        "name": "Olimex A13-SOM",
-        "category": "conf",
+        "name": "A13-SOM",
+        "category": "csc",
         "kernel_target": [
           "current",
-          "edge"
+          "edge",
+          "legacy"
         ]
       },
       {
@@ -4719,7 +4855,7 @@
       },
       {
         "board": "oneplus-kebab",
-        "name": "Oneplus Kebab",
+        "name": "Kebab",
         "category": "conf",
         "kernel_target": [
           "current"
@@ -4764,7 +4900,7 @@
       },
       {
         "board": "orangepi-r1plus",
-        "name": "Orange Pi R1 Plus",
+        "name": "Orange Pi R1+",
         "category": "csc",
         "kernel_target": [
           "current",
@@ -4773,7 +4909,7 @@
       },
       {
         "board": "orangepi-r1plus-lts",
-        "name": "Orange Pi R1 Plus LTS",
+        "name": "Orange Pi R1+ LTS",
         "category": "csc",
         "kernel_target": [
           "current",
@@ -4877,7 +5013,7 @@
       },
       {
         "board": "orangepi5-plus",
-        "name": "Orange Pi 5 Plus",
+        "name": "Orange Pi 5+",
         "category": "conf",
         "kernel_target": [
           "current",
@@ -5099,7 +5235,7 @@
       },
       {
         "board": "orangepizeroplus",
-        "name": "Orange Pi Zero Plus",
+        "name": "Orange Pi Zero+",
         "category": "csc",
         "kernel_target": [
           "current",
@@ -5109,7 +5245,7 @@
       },
       {
         "board": "orangepizeroplus2-h3",
-        "name": "Orange Pi Zero Plus 2",
+        "name": "Orange Pi Zero+ 2 H3",
         "category": "csc",
         "kernel_target": [
           "current",
@@ -5119,7 +5255,7 @@
       },
       {
         "board": "orangepizeroplus2-h5",
-        "name": "Orange Pi Zero Plus 2",
+        "name": "Orange Pi Zero+ 2 H5",
         "category": "csc",
         "kernel_target": [
           "current",
@@ -5129,7 +5265,7 @@
       },
       {
         "board": "panther-x2",
-        "name": "panther-x2",
+        "name": "X2",
         "category": "eos",
         "kernel_target": [
           "current",
@@ -5192,7 +5328,7 @@
       },
       {
         "board": "pine64",
-        "name": "Pine64",
+        "name": "Pine A64 / A64+",
         "category": "csc",
         "kernel_target": [
           "current",
@@ -5314,6 +5450,15 @@
         ]
       },
       {
+        "board": "quartz64-zero",
+        "name": "Quartz64 Zero",
+        "category": "csc",
+        "kernel_target": [
+          "current",
+          "edge"
+        ]
+      },
+      {
         "board": "quartz64a",
         "name": "Pine Quartz64 A",
         "category": "csc",
@@ -5333,7 +5478,7 @@
       },
       {
         "board": "radxa-cm4-io",
-        "name": "Radxa CM4-IO",
+        "name": "CM4-IO",
         "category": "conf",
         "kernel_target": [
           "vendor"
@@ -5341,7 +5486,7 @@
       },
       {
         "board": "radxa-cm5-io",
-        "name": "Radxa CM5 IO",
+        "name": "CM5 IO",
         "category": "conf",
         "kernel_target": [
           "vendor",
@@ -5359,16 +5504,16 @@
       },
       {
         "board": "radxa-dragon-q6a",
-        "name": "Radxa Dragon Q6A",
+        "name": "Dragon Q6A",
         "category": "conf",
         "kernel_target": [
-          "current",
+          "vendor",
           "edge"
         ]
       },
       {
         "board": "radxa-dragon-q8b",
-        "name": "Radxa Dragon Q8B",
+        "name": "Dragon Q8B",
         "category": "conf",
         "kernel_target": [
           "vendor",
@@ -5377,7 +5522,7 @@
       },
       {
         "board": "radxa-e20c",
-        "name": "Radxa E20C",
+        "name": "E20C",
         "category": "csc",
         "kernel_target": [
           "vendor"
@@ -5385,7 +5530,7 @@
       },
       {
         "board": "radxa-e24c",
-        "name": "Radxa E24C",
+        "name": "E24C",
         "category": "conf",
         "kernel_target": [
           "edge",
@@ -5394,7 +5539,7 @@
       },
       {
         "board": "radxa-e25",
-        "name": "Radxa E25",
+        "name": "E25",
         "category": "conf",
         "kernel_target": [
           "current",
@@ -5404,7 +5549,7 @@
       },
       {
         "board": "radxa-e52c",
-        "name": "Radxa E52C",
+        "name": "E52C",
         "category": "conf",
         "kernel_target": [
           "vendor",
@@ -5414,7 +5559,7 @@
       },
       {
         "board": "radxa-e54c",
-        "name": "Radxa E54C",
+        "name": "E54C",
         "category": "conf",
         "kernel_target": [
           "vendor"
@@ -5422,7 +5567,7 @@
       },
       {
         "board": "radxa-nio-12l",
-        "name": "Radxa Nio 12L",
+        "name": "Nio 12L",
         "category": "conf",
         "kernel_target": [
           "edge"
@@ -5430,7 +5575,7 @@
       },
       {
         "board": "radxa-rock-4d",
-        "name": "Radxa Rock 4D",
+        "name": "Rock 4D",
         "category": "conf",
         "kernel_target": [
           "vendor",
@@ -5439,7 +5584,7 @@
       },
       {
         "board": "radxa-zero",
-        "name": "Radxa Zero",
+        "name": "Zero",
         "category": "conf",
         "kernel_target": [
           "current",
@@ -5448,7 +5593,7 @@
       },
       {
         "board": "radxa-zero2",
-        "name": "Radxa Zero 2",
+        "name": "Zero 2",
         "category": "csc",
         "kernel_target": [
           "current",
@@ -5457,7 +5602,7 @@
       },
       {
         "board": "radxa-zero3",
-        "name": "Radxa ZERO 3",
+        "name": "ZERO 3",
         "category": "conf",
         "kernel_target": [
           "vendor",
@@ -5472,6 +5617,14 @@
         "kernel_target": [
           "vendor",
           "edge"
+        ]
+      },
+      {
+        "board": "recomputer-rk3576-industrial",
+        "name": "reComputer RK3576 Industrial",
+        "category": "csc",
+        "kernel_target": [
+          "vendor"
         ]
       },
       {
@@ -5586,6 +5739,7 @@
         "category": "conf",
         "kernel_target": [
           "vendor",
+          "current",
           "edge"
         ]
       },
@@ -5595,6 +5749,7 @@
         "category": "conf",
         "kernel_target": [
           "vendor",
+          "current",
           "edge"
         ]
       },
@@ -5628,7 +5783,7 @@
       },
       {
         "board": "rock-5-cm-rpi-cm4-io",
-        "name": "Radxa CM5 on RPi CM4 IO",
+        "name": "CM5 on RPi CM4 IO",
         "category": "csc",
         "kernel_target": [
           "vendor"
@@ -5636,7 +5791,7 @@
       },
       {
         "board": "rock-5-cmio",
-        "name": "Radxa CM5",
+        "name": "CM5",
         "category": "csc",
         "kernel_target": [
           "vendor"
@@ -5674,7 +5829,7 @@
       },
       {
         "board": "rock-5b-plus",
-        "name": "Rock 5B Plus",
+        "name": "Rock 5B+",
         "category": "conf",
         "kernel_target": [
           "vendor",
@@ -5813,7 +5968,7 @@
       },
       {
         "board": "sakurapi-rk3308b",
-        "name": "Sakura Pi RK3308B",
+        "name": "Pi RK3308B",
         "category": "conf",
         "kernel_target": [
           "current"
@@ -5909,7 +6064,7 @@
       },
       {
         "board": "smart-am40",
-        "name": "SMART AM40",
+        "name": "AM40",
         "category": "csc",
         "kernel_target": [
           "current",
@@ -5918,7 +6073,7 @@
       },
       {
         "board": "sovol-sv08",
-        "name": "Sovol SV08",
+        "name": "SV08",
         "category": "csc",
         "kernel_target": [
           "current",
@@ -5927,7 +6082,7 @@
       },
       {
         "board": "sovol-sv08-max",
-        "name": "Sovol SV08 Max",
+        "name": "SV08 Max",
         "category": "csc",
         "kernel_target": [
           "current",
@@ -5936,7 +6091,7 @@
       },
       {
         "board": "sovol-zero",
-        "name": "Sovol Zero",
+        "name": "Zero 3D Printer",
         "category": "conf",
         "kernel_target": [
           "current",
@@ -6049,7 +6204,7 @@
         "name": "ThinkPad X13s",
         "category": "conf",
         "kernel_target": [
-          "sc8280xp"
+          "edge"
         ]
       },
       {
@@ -6101,6 +6256,14 @@
         ]
       },
       {
+        "board": "torder-r10d",
+        "name": "R10D",
+        "category": "csc",
+        "kernel_target": [
+          "vendor"
+        ]
+      },
+      {
         "board": "tq-smarc2-tqma8mpxs",
         "name": "TQ-SMARC2-TQMa8MPxS",
         "category": "conf",
@@ -6137,6 +6300,15 @@
           "current",
           "edge",
           "vendor"
+        ]
+      },
+      {
+        "board": "turris-omnia",
+        "name": "Turris Omnia",
+        "category": "conf",
+        "kernel_target": [
+          "current",
+          "edge"
         ]
       },
       {
@@ -6245,7 +6417,7 @@
       },
       {
         "board": "walnutpi-1b",
-        "name": "Walnut Pi 1B",
+        "name": "Pi 1B",
         "category": "csc",
         "kernel_target": [
           "current",
@@ -6254,7 +6426,7 @@
       },
       {
         "board": "walnutpi-1b-ddr3",
-        "name": "Walnut Pi 1B DDR3",
+        "name": "Pi 1B DDR3",
         "category": "csc",
         "kernel_target": [
           "current",
@@ -6263,7 +6435,7 @@
       },
       {
         "board": "walnutpi-box",
-        "name": "Walnut Pi Box",
+        "name": "Pi Box",
         "category": "csc",
         "kernel_target": [
           "current",
@@ -6272,7 +6444,7 @@
       },
       {
         "board": "walnutpi-zerow",
-        "name": "Walnut Pi ZeroW",
+        "name": "Pi ZeroW",
         "category": "csc",
         "kernel_target": [
           "current",
@@ -6324,7 +6496,7 @@
       },
       {
         "board": "xiaomi-elish",
-        "name": "Xiaomi Elish",
+        "name": "Elish",
         "category": "conf",
         "kernel_target": [
           "current",
@@ -6333,7 +6505,7 @@
       },
       {
         "board": "xiaomi-sheng",
-        "name": "Xiaomi Pad 6S Pro",
+        "name": "Pad 6S Pro",
         "category": "csc",
         "kernel_target": [
           "edge"
@@ -6341,7 +6513,7 @@
       },
       {
         "board": "xpressreal-t3",
-        "name": "XpressReal T3",
+        "name": "T3",
         "category": "csc",
         "kernel_target": [
           "vendor"
@@ -6358,7 +6530,7 @@
       },
       {
         "board": "youyeetoo-r1-v3",
-        "name": "Youyeetoo R1 v3",
+        "name": "R1 v3",
         "category": "conf",
         "kernel_target": [
           "vendor",
@@ -6368,7 +6540,7 @@
       },
       {
         "board": "youyeetoo-yy3588",
-        "name": "Youyeetoo YY3588",
+        "name": "YY3588",
         "category": "conf",
         "kernel_target": [
           "vendor",
@@ -6378,7 +6550,7 @@
       },
       {
         "board": "yy3568",
-        "name": "YouYeeToo YY3568",
+        "name": "YY3568",
         "category": "csc",
         "kernel_target": [
           "current",
@@ -6413,14 +6585,6 @@
         ]
       }
     ],
-    "duplicates": [
-      {
-        "board": "olinux-som-a13",
-        "categories": [
-          "conf",
-          "csc"
-        ]
-      }
-    ]
+    "duplicates": []
   }
 }
