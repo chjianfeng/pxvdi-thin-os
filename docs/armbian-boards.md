@@ -6,11 +6,11 @@
 
 > Board 名用于 `build-official-armbian.yml` 的 `board` 参数，内核分支用于 `branch` 参数。
 >
-> 本表以 Armbian main 分支为准（2026-10-23），共 432 个 board，按 `.conf` / `.csc` / `.tvb` / `.wip` / `.eos` 分类。
+> 本表以 Armbian main 分支为准（2026-11-14），共 447 个 board，按 `.conf` / `.csc` / `.tvb` / `.wip` / `.eos` 分类。
 >
 > workflow 的 `branch` 下拉框目前只提供 `vendor` / `current` / `edge`；表中的 `legacy` / `bleedingedge` / `vendor-rt` / `vendor-edge` / `cloud`，以及少数 board 自定义的分支名（如 `sc8280xp`），为上游声明但当前 workflow 未开放。
 
-## 官方支持 (.conf) (150 个)
+## 官方支持 (.conf) (155 个)
 
 | Board | 内核分支 |
 |-------|---------|
@@ -34,6 +34,7 @@
 | `beagley-ai` | `vendor`, `vendor-rt`, `edge` |
 | `bigtreetech-cb1` | `current`, `edge` |
 | `bigtreetech-cb2` | `current`, `edge` |
+| `boardcon-em3588` | `vendor` |
 | `boardcon-sbc3568` | `vendor` |
 | `cix-acpi` | `current`, `edge` |
 | `clearfogpro` | `current`, `edge` |
@@ -75,6 +76,8 @@
 | `mekotronics-r58-4x4` | `edge`, `vendor` |
 | `mekotronics-r58hd` | `vendor` |
 | `mekotronics-r58s2` | `vendor` |
+| `milkv-duos-arm` | `edge` |
+| `milkv-duos-riscv` | `edge` |
 | `mksklipad50` | `current`, `edge` |
 | `musebook` | `legacy`, `current` |
 | `musepipro` | `legacy`, `current`, `edge` |
@@ -95,13 +98,14 @@
 | `odroidm1` | `current`, `edge` |
 | `odroidm2` | `current`, `edge` |
 | `odroidn2` | `current`, `edge` |
+| `odroidu2` | `current`, `edge` |
 | `odroidxu4` | `current`, `edge` |
-| `olinux-som-a13` | `current`, `edge` |
 | `oneplus-kebab` | `current` |
 | `orangepi3-lts` | `legacy`, `current`, `edge` |
 | `orangepi4-lts` | `current`, `edge` |
 | `orangepi5` | `current`, `edge`, `vendor` |
 | `orangepi5-plus` | `current`, `edge`, `vendor` |
+| `orangepi5-ultra` | `vendor`, `current`, `edge` |
 | `orangepione` | `current`, `edge`, `legacy` |
 | `orangepipc2` | `current`, `edge`, `legacy` |
 | `orangepizero3w` | `vendor` |
@@ -109,7 +113,7 @@
 | `qidi-x6` | `current`, `edge` |
 | `radxa-cm4-io` | `vendor` |
 | `radxa-cm5-io` | `vendor`, `edge` |
-| `radxa-dragon-q6a` | `current`, `edge` |
+| `radxa-dragon-q6a` | `vendor`, `edge` |
 | `radxa-dragon-q8b` | `vendor`, `edge` |
 | `radxa-e24c` | `edge`, `vendor` |
 | `radxa-e25` | `current`, `edge`, `vendor` |
@@ -122,8 +126,8 @@
 | `recomputer-rk3576-devkit` | `vendor`, `edge` |
 | `recomputer-rk3588-devkit` | `vendor`, `edge` |
 | `renegade` | `current`, `edge` |
-| `rock-2a` | `vendor`, `edge` |
-| `rock-2f` | `vendor`, `edge` |
+| `rock-2a` | `vendor`, `current`, `edge` |
+| `rock-2f` | `vendor`, `current`, `edge` |
 | `rock-3a` | `current`, `edge`, `vendor` |
 | `rock-5-itx` | `current`, `edge`, `vendor` |
 | `rock-5a` | `current`, `edge`, `vendor` |
@@ -150,11 +154,12 @@
 | `sweet-potato` | `current`, `edge` |
 | `tanix-tx6s` | `current`, `edge` |
 | `tanix-tx6s-axp313` | `current`, `edge` |
-| `thinkpad-x13s` | `sc8280xp` |
+| `thinkpad-x13s` | `edge` |
 | `tinkerboard` | `current`, `edge` |
 | `tmds62levm` | `vendor`, `vendor-rt`, `vendor-edge` |
 | `tmds64evm` | `vendor`, `vendor-rt`, `vendor-edge`, `edge` |
 | `tq-smarc2-tqma8mpxs` | `current`, `edge` |
+| `turris-omnia` | `current`, `edge` |
 | `udoo` | `current`, `edge` |
 | `uefi-arm64` | `current`, `edge`, `legacy`, `cloud` |
 | `uefi-arm64-dt` | `current`, `edge` |
@@ -165,7 +170,7 @@
 | `youyeetoo-r1-v3` | `vendor`, `current`, `edge` |
 | `youyeetoo-yy3588` | `vendor`, `current`, `edge` |
 
-## 社区支持 (.csc) (232 个)
+## 社区支持 (.csc) (244 个)
 
 | Board | 内核分支 |
 |-------|---------|
@@ -175,13 +180,14 @@
 | `aml-s905d3-cc` | `current`, `edge` |
 | `anbernic-rg-rotate` | `edge` |
 | `armsom-aim7-io` | `vendor` |
-| `armsom-cm5-io` | `vendor` |
+| `armsom-cm5-io` | `vendor`, `edge` |
 | `armsom-cm5-rpi-cm4-io` | `vendor` |
 | `armsom-cm7s-io` | `vendor` |
 | `armsom-forge1` | `vendor` |
 | `armsom-sige1` | `vendor` |
 | `armsom-sige3` | `vendor` |
 | `armsom-sige5` | `vendor`, `edge` |
+| `armsom-sige6` | `vendor` |
 | `armsom-sige7` | `current`, `edge`, `vendor` |
 | `armsom-w3` | `vendor` |
 | `avaota-a1` | `edge` |
@@ -191,16 +197,18 @@
 | `ayn-odin3` | `edge` |
 | `ayn-thor` | `current`, `edge` |
 | `bananapim1plus` | `current`, `edge`, `legacy` |
+| `bananapim2` | `legacy`, `current`, `edge` |
 | `bananapim2plus` | `current`, `edge`, `legacy` |
 | `bananapim2pro` | `current`, `edge` |
 | `bananapim2ultra` | `current`, `edge`, `legacy` |
 | `bananapim2zero` | `current`, `edge`, `legacy` |
 | `bananapim3` | `current`, `edge`, `legacy` |
+| `bananapim4` | `current`, `edge` |
 | `bananapim64` | `current`, `edge`, `legacy` |
 | `bananapipro` | `current`, `edge`, `legacy` |
 | `bananapir2pro` | `current`, `edge` |
 | `bananapir3mini` | `current` |
-| `bananapir4` | `current` |
+| `bananapir4` | `current`, `edge` |
 | `bananapiw2` | `current`, `edge` |
 | `bestv-r3300-l` | `current`, `edge` |
 | `cainiao-cniot-core` | `current`, `edge` |
@@ -216,13 +224,18 @@
 | `cubieboard4` | `current`, `edge` |
 | `cubietruck` | `current`, `edge`, `legacy` |
 | `cyber-aib-rk3588` | `vendor`, `edge` |
+| `debix-model-a` | `current`, `edge` |
+| `debix-model-c` | `current`, `edge` |
 | `dshanpi-a1` | `vendor` |
-| `dshanpi-r1` | `vendor` |
+| `dshanpi-a1-cm5-waveshare-cm5-to-pi5-adapter` | `current`, `edge` |
+| `dshanpi-r1` | `current`, `edge`, `vendor` |
 | `dusun-dsom-010r` | `current`, `edge` |
+| `easepi-r1` | `current`, `edge` |
 | `easy-eai-nano` | `vendor` |
 | `ebyte-ecb41-pge` | `vendor` |
 | `eltay-rm66` | `current`, `vendor`, `edge` |
 | `fine3399` | `current`, `edge` |
+| `firefly-aibox-k3` | `legacy` |
 | `firefly-itx-3588j` | `vendor` |
 | `firefly-rk3399` | `current`, `edge` |
 | `forlinx-ok3506-s12` | `vendor` |
@@ -267,8 +280,6 @@
 | `mekotronics-r58x-pro` | `edge`, `vendor` |
 | `melea1000` | `current`, `edge`, `legacy` |
 | `mellowflyc5` | `current`, `edge` |
-| `milkv-duos-arm` | `edge` |
-| `milkv-duos-riscv` | `edge` |
 | `mixtile-blade3` | `vendor`, `edge` |
 | `mixtile-core3588e` | `edge`, `vendor` |
 | `mixtile-edge2` | `current`, `edge`, `vendor` |
@@ -303,8 +314,11 @@
 | `numaker-iot-ma35d16f90` | `vendor` |
 | `odroidm1s` | `current`, `edge` |
 | `odroidn2l` | `current`, `edge` |
+| `odroidu3` | `current`, `edge` |
+| `odroidx2` | `current`, `edge` |
 | `olimex-a20-olinuxino-micro` | `current`, `edge`, `legacy` |
 | `olimex-teres-a64` | `current`, `edge`, `legacy` |
+| `olinux-som-a13` | `current`, `edge`, `legacy` |
 | `onecloud` | `current` |
 | `orangepi-4a` | `edge` |
 | `orangepi-r1` | `current`, `edge`, `legacy` |
@@ -317,9 +331,9 @@
 | `orangepi4` | `current`, `edge` |
 | `orangepi4pro` | `vendor` |
 | `orangepi5-max` | `vendor`, `current`, `edge` |
-| `orangepi5-ultra` | `vendor`, `current`, `edge` |
 | `orangepi5b` | `edge`, `vendor` |
 | `orangepi5pro` | `current`, `edge`, `vendor` |
+| `orangepia31s` | `current`, `edge` |
 | `orangepilite` | `current`, `edge`, `legacy` |
 | `orangepilite2` | `current`, `edge`, `legacy` |
 | `orangepioneplus` | `current`, `edge`, `legacy` |
@@ -353,11 +367,13 @@
 | `qemu-uboot-arm64` | `current`, `edge` |
 | `qemu-uboot-x86` | `current`, `edge` |
 | `qemu-uefi-x86` | `current`, `edge`, `legacy` |
+| `quartz64-zero` | `current`, `edge` |
 | `quartz64a` | `current`, `edge` |
 | `quartz64b` | `current`, `edge` |
 | `radxa-cubie-a5e` | `current`, `edge` |
 | `radxa-e20c` | `vendor` |
 | `radxa-zero2` | `current`, `edge` |
+| `recomputer-rk3576-industrial` | `vendor` |
 | `recomputer-rk3576-module-devkit` | `vendor` |
 | `recore` | `current`, `edge` |
 | `retro-lite-cm5` | `vendor` |
@@ -386,6 +402,7 @@
 | `station-p2` | `current`, `edge` |
 | `tinker-edge-r` | `current`, `edge` |
 | `tinkerboard-2` | `current`, `edge` |
+| `torder-r10d` | `vendor` |
 | `tritium-h3` | `current`, `edge`, `legacy` |
 | `tritium-h5` | `current`, `edge`, `legacy` |
 | `turing-rk1` | `current`, `edge`, `vendor` |
@@ -421,19 +438,17 @@
 | `xt-q8l-v10` | `current`, `edge` |
 | `z28pro` | `current` |
 
-## 开发中 (.wip) (3 个)
+## 开发中 (.wip) (2 个)
 
 | Board | 内核分支 |
 |-------|---------|
-| `firefly-aibox-k3` | `legacy` |
 | `orangepi-cm5` | `current`, `edge` |
 | `ztl-a568` | `current`, `edge` |
 
-## 已停止维护 (.eos) (33 个)
+## 已停止维护 (.eos) (32 个)
 
 | Board | 内核分支 |
 |-------|---------|
-| `bananapim2` | `current`, `legacy` |
 | `beaglev` | `edge` |
 | `cubietruckplus` | `current`, `edge`, `legacy` |
 | `fe-som-rk3399` | `current`, `edge` |
@@ -466,5 +481,3 @@
 | `virtual-qemu` | `current` |
 | `visionfive` | `edge` |
 | `wdk2023` | `wdk2023` |
-
-> 注：上游 `olinux-som-a13` 同时存在 `.conf` / `.csc`，已按官方 `.conf` 列出一次。

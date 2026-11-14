@@ -11,16 +11,16 @@
 
 ### 可用内核版本
 
-每个 board 的默认内核标签见各表中的「内核标签」列。`stable` 系列当前包含以下版本（2026-10-23）：
+每个 board 的默认内核标签见各表中的「内核标签」列。`stable` 系列当前包含以下版本（2026-11-14）：
 
 | 内核版本 | 最新补丁 | 说明 |
 |---------|---------|------|
-| `6.12.y` | 6.12.114 | LTS 长期支持（推荐） |
-| `6.18.y` | 6.18.58 | 最新版 |
-| `6.6.y` | 6.6.160 | LTS 长期支持 |
-| `6.1.y` | 6.1.190 | LTS 长期支持 |
-| `5.15.y` | 5.15.223 | 旧设备 |
-| `5.10.y` | 5.10.272 | 旧设备 |
+| `6.12.y` | 6.12.117 | LTS 长期支持（推荐） |
+| `6.18.y` | 6.18.63 | 最新版 |
+| `6.6.y` | 6.6.162 | LTS 长期支持 |
+| `6.1.y` | 6.1.192 | LTS 长期支持 |
+| `5.15.y` | 5.15.225 | 旧设备 |
+| `5.10.y` | 5.10.274 | 旧设备 |
 
 > 多个版本用 `_` 分隔，如 `6.6.y_6.12.y`，会为每个版本各生成一套镜像。
 >
@@ -35,7 +35,7 @@
 > | `rk35xx/all` | rk3328/rk3399/rk3528/rk3566/rk3568 专用 BSP 内核（kernel_rk35xx） |
 > | `rk35xx/6.1.y` | 上述 rk35xx 设备仅 6.1.y |
 >
-> BSP 内核当前最新：`6.12.69` / `6.1.174` / `5.10.160`。
+> BSP 内核当前最新：`6.12.81` / `6.1.174` / `5.10.160`。
 >
 > 本仓库 workflow 的 `armbian_kernel` 下拉框目前提供 `stable` / `6.12.y` / `6.18.y` / `6.6.y` / `6.1.y` / `5.15.y`；`5.10.y` 需直接调用上游 ophub action。
 
@@ -112,6 +112,7 @@
 | `s905x3-x96air-gb` | X96-Air-1Gb | `stable/all` |
 | `s905x3-x96max` | X96-Max+_1GB | `stable/all` |
 | `s905x3-x96max-oc` | X96-Max+(OverClock) | `stable/all` |
+| `s905x3-yzd-s18` | YZD-S18 | `stable/6.18.y` |
 
 ### s905x2
 
@@ -121,6 +122,7 @@
 | `s905x2-b860h-v5` | ZTE-B860H-V5 | `stable/all` |
 | `s905x2-hg680fj` | HG680-FJ | `stable/all` |
 | `s905x2-km3` | MECOOL-KM3-4G | `stable/all` |
+| `s905x2-w103d` | ZTE-W103D | `stable/6.18.y` |
 | `s905x2-x96max-2g` | X96-Max-2GB, A95X-F2 | `stable/all` |
 
 ### s905x
@@ -184,7 +186,6 @@
 | `s905l3a` | s905l3a | E900V22C-D, CM311-1a-CH, IP112H, B863AV3.1 | `stable/all` |
 | `s905l3a-cm311` | s905l3a | CM311-1a-YST | `stable/all` |
 | `s905l3a-m401a` | s905l3a | M401A, UNT403A, B863AV3.2-M | `stable/all` |
-| `s905l3a-w103d` | s905l3a | ZTE-W103D | `stable/6.18.y` |
 | `s905l3b` | s905l3b | M302A, M304A, CM201-1, CM211-1, CM311-1 | `stable/6.18.y` |
 | `s905l3b-e900v21d` | s905l3b | E900V21D, B860AV2.1-A | `stable/6.18.y` |
 | `s905l3b-e900v22d` | s905l3b | E900V22D, TY1608 | `stable/6.18.y` |
@@ -274,6 +275,7 @@
 | `r66s` | R66S | `rk35xx/all` |
 | `r68s` | R68S | `rk35xx/all` |
 | `roceos-k40pro` | Roceos-K40Pro | `stable/6.18.y` |
+| `rock-3a` | Rock-3A | `stable/6.18.y` |
 | `rock-3b` | Rock-3B | `stable/6.18.y` |
 | `ruisen-box` | Ruisen-box | `rk35xx/all` |
 | `seewo-sv21` | Seewo-sv21 | `stable/6.18.y` |
@@ -281,6 +283,7 @@
 | `swan1-w28` | Swan1-w28 | `rk35xx/all` |
 | `wocyber-a3` | Wocyber-A3 | `stable/6.18.y` |
 | `youyeetoo-yy3568` | Youyeetoo-YY3568 | `stable/6.18.y` |
+| `z93a` | Z93A | `stable/6.18.y` |
 | `ztl-a568` | DC_A568(ztl-a568) | `stable/6.18.y` |
 
 ### rk3566
@@ -296,6 +299,7 @@
 | `panther-x2` | Panther-X2 | `stable/6.18.y` |
 | `rock-3c` | Rock-3C | `stable/6.18.y` |
 | `station-m2` | Station-M2 | `rk35xx/all` |
+| `torder-r10d` | Torder-R10D | `rk35xx/6.1.y` |
 | `wxy-oect` | WXY-OEC-turbo-4g(Original-Edition) | `rk35xx/all` |
 | `wxy-oect-mod` | WXY-OEC-turbo-4g(Replaced-Chip-eMMC) | `rk35xx/all` |
 | `x88pro20` | X88Pro20 | `rk35xx/all` |
@@ -318,6 +322,7 @@
 
 | Board | 设备 | 内核标签 |
 |-------|------|---------|
+| `ai3399-c` | AI3399-C | `stable/6.18.y` |
 | `aio-3399b` | AIO-3399b | `stable/6.18.y` |
 | `aio-3399c` | AIO-3399C | `stable/6.18.y` |
 | `aio-3399c-ai` | AIO-3399C(AI) | `stable/6.18.y` |
@@ -351,6 +356,7 @@
 | `tb-ls3399` | Tb-ls3399 | `stable/6.18.y` |
 | `tn3399` | TN3399 | `stable/6.18.y` |
 | `tpm312` | Tpm312 | `stable/6.18.y` |
+| `tps781` | TPS781 | `stable/6.18.y` |
 | `tvi3315a` | tvi3315a | `stable/6.18.y` |
 | `xiaobao` | xiaobao | `stable/6.18.y` |
 | `yskj` | YSKJ | `stable/6.18.y` |
